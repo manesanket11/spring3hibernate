@@ -58,7 +58,7 @@ resource "aws_db_instance" "default" {
 resource "aws_db_subnet_group" "default" {
   name        = "main_subnet_group"
   description = "Our main group of subnets"
-  subnet_ids  = ["${aws_subnet.main.*.id}"]
+  subnet_ids  = "${aws_subnet.main.*.id}"
 }
 
 ### Compute
@@ -220,7 +220,7 @@ resource "aws_ecs_service" "opstree" {
   iam_role        = "${aws_iam_role.ecs_service.name}"
 
   load_balancer {
-    target_group_arn = "${aws_alb_target_group.test.id}"
+    target_group_arn = "${aws_alb_target_group.opstree.id}"
     container_name   = "opstree"
     container_port   = "8080"
   }
@@ -320,15 +320,15 @@ resource "aws_iam_role_policy" "instance" {
 
 ## ALB
 
-resource "aws_alb_target_group" "test" {
-  name     = "tf-example-ecs-ghost"
-  port     = 8080
+resource "aws_alb_target_group" "opstree" {
+  name     = "opstree"
+  port     = 80
   protocol = "HTTP"
   vpc_id   = "${aws_vpc.main.id}"
 }
 
 resource "aws_alb" "main" {
-  name            = "tf-example-alb-ecs"
+  name            = "alb-ecs"
   subnets         = "${aws_subnet.main.*.id}"
   security_groups = ["${aws_security_group.lb_sg.id}"]
 }
@@ -339,7 +339,7 @@ resource "aws_alb_listener" "front_end" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = "${aws_alb_target_group.test.id}"
+    target_group_arn = "${aws_alb_target_group.opstree.id}"
     type             = "forward"
   }
 }
