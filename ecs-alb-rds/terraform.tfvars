@@ -1,3 +1,3 @@
-admin_cidr_ingress = "172.31.52.176/32"
+admin_cidr_ingress = "100.27.3.140/32"
 key_name           = "test11"
 password           = "password"

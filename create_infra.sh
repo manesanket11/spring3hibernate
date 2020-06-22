@@ -14,3 +14,5 @@ docker build -t opstree/spring3hibernate:latest -f Dockerfile .
 docker tag opstree/spring3hibernate ${ecr_repo}/opstree:latest
 $(aws ecr get-login --no-include-email)
 docker push ${ecr_repo}/opstree:latest
+cd ecs-alb-rds
+terraform apply -auto-approve -parallelism=50
