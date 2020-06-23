@@ -38,7 +38,7 @@ variable "db_name" {
 }
 
 variable "username" {
-  default     = "root"
+  default     = "opstree"
   description = "User name"
 }
 
