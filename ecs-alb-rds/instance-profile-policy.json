@@ -10,6 +10,7 @@
         "ecs:Poll",
         "ecs:RegisterContainerInstance",
         "ecs:Submit*",
+        "ecr:*",
         "ecs:StartTelemetrySession"
       ],
       "Resource": [
