@@ -1,2 +1,2 @@
 password = "password"
-vpc_id   = ""
+vpc_id   = "vpc"
