@@ -15,5 +15,6 @@ docker tag opstree/spring3hibernate ${ecr_repo}/opstree:latest
 $(aws ecr get-login --no-include-email)
 docker push ${ecr_repo}/opstree:latest
 cd ecs-alb-rds
+sed -i "s|opstree|${ecr_repo}/opstree:latest|g" variables.tf
 terraform init
 terraform apply -auto-approve -parallelism=50

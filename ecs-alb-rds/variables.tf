@@ -84,3 +84,8 @@ variable "username" {
 variable "password" {
   description = "password, provide through your ENV variables"
 }
+
+variable "image_url" {
+  default     = "opstree"
+  description = "docker image"
+}

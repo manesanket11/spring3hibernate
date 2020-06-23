@@ -200,7 +200,7 @@ data "template_file" "task_definition" {
   template = "${file("${path.module}/task-definition.json")}"
 
   vars = {
-    image_url        = "opstree" # update ecr url for opstree image after updating to ecr
+    image_url        = "${var.image_url}" # update ecr url for opstree image after updating to ecr
     container_name   = "opstree"
     log_group_region = "${var.aws_region}"
     log_group_name   = "${aws_cloudwatch_log_group.app.name}"
