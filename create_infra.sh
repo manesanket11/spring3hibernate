@@ -7,6 +7,7 @@ yum install -y aws-cli
 mkdir -p ~/.aws
 cp -v config ~/.aws
 cd ecr-repo
+terraform init
 ecr_url=`terraform apply -auto-approve -parallelism=50 | grep "opstree =" | cut -d'=' -f2`
 ecr_repo=`echo ${ecr_url} | cut -d/ -f1`
 cd -
