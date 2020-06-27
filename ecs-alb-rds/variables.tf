@@ -72,7 +72,7 @@ variable "instance_class" {
 }
 
 variable "db_name" {
-  default     = "mydb"
+  default     = "employeedb"
   description = "db name"
 }
 
