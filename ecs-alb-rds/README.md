@@ -1,35 +1,14 @@
-# ECS with ALB example
+# ECS with ALB and RDS
 
-This example shows how to launch an ECS service fronted with Application Load Balancer.
+In this Terraform code we are creating below infrastructure:
 
-The example uses latest CoreOS Stable AMIs.
+1. Creation of the ECR Repo
+2. Creating ECR Variables
+3. RDS and Ghost image
+4.Create Image with RDS Url Endpoint
+5. Newly crated image will be updated to ECR
+6. Update the ECS Cluster with application
 
-To run, configure your AWS provider as described in https://www.terraform.io/docs/providers/aws/index.html
 
-## Get up and running
 
-Planning phase
 
-```
-terraform plan \
-	-var admin_cidr_ingress='"{your_ip_address}/32"' \
-	-var key_name={your_key_name}
-```
-
-Apply phase
-
-```
-terraform apply \
-	-var admin_cidr_ingress='"{your_ip_address}/32"' \
-	-var key_name={your_key_name}
-```
-
-Alternatively to using `-var` with each command, the `terraform.template.tfvars` file can be copied to `terraform.tfvars` and updated.
-
-Once the stack is created, wait for a few minutes and test the stack by launching a browser with the ALB url.
-
-## Destroy :boom:
-
-```
-terraform destroy
-```
